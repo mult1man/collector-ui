@@ -3,17 +3,17 @@ import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'page-not-found',
-  templateUrl: 'page-not-found.component.html',
+  selector: 'page-forbidden',
+  templateUrl: 'page-forbidden.component.html'
 })
-export class PageNotFoundComponent implements OnInit {
+export class PageForbiddenComponent implements OnInit {
 
   constructor(private router: Router,
               private titleService: Title) {
   }
 
   ngOnInit(): any {
-    this.titleService.setTitle('Error 404');
+    this.titleService.setTitle('Error 403');
   }
 
   home() {

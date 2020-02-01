@@ -1,15 +1,7 @@
-<div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
-     data-animsition-out="fade-out">
-  <div class="page-content vertical-align-middle">
-    <header>
-      <h1 class="animation-slide-top">404</h1>
-      <p>Page Not Found !</p>
-    </header>
-    <p class="error-advise">YOU SEEM TO BE TRYING TO FIND YOUR WAY HOME</p>
-    <a class="btn btn-primary btn-round" href="/">GO TO HOME PAGE</a>
-    <footer class="page-copyright">
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-    </footer>
-  </div>
-</div>
+<nz-layout class="layout-fullscreen">
+  <nz-result nzStatus="404" nzTitle="404" nzSubTitle="Sorry, the page you visited does not exist.">
+    <div nz-result-extra>
+      <button nz-button nzType="primary" (click)="home()">Back Home</button>
+    </div>
+  </nz-result>
+</nz-layout>

@@ -10,8 +10,7 @@ import {registerLocaleData} from '@angular/common';
 import nl from '@angular/common/locales/nl';
 import {SharedModule} from './pages/shared/shared.module';
 import {SecurityModule} from './pages/security/security.module';
-import {ForbiddenPageComponent} from './pages/shared/ui/forbidden-page.component';
-import {LoginErrorPageComponent} from './pages/shared/ui/login-error-page.component';
+import {PageForbiddenComponent} from './pages/shared/ui/page-forbidden.component';
 import {PageNotFoundComponent} from './pages/shared/ui/page-not-found.component';
 
 registerLocaleData(nl);
@@ -19,8 +18,7 @@ registerLocaleData(nl);
 @NgModule({
   declarations: [
     AppComponent,
-    ForbiddenPageComponent,
-    LoginErrorPageComponent,
+    PageForbiddenComponent,
     PageNotFoundComponent
   ],
   imports: [
