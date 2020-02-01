@@ -1,18 +1,13 @@
-import { NgModule } from '@angular/core';
-import { NZ_ICONS } from 'ng-zorro-antd';
+import {NgModule} from '@angular/core';
+import {NZ_ICONS} from 'ng-zorro-antd';
 
-import {
-  MenuFoldOutline,
-  MenuUnfoldOutline,
-  FormOutline,
-  DashboardOutline
-} from '@ant-design/icons-angular/icons';
+import {BookOutline, HomeOutline, LockOutline, UserOutline} from '@ant-design/icons-angular/icons';
 
-const icons = [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline];
+const icons = [HomeOutline, BookOutline, LockOutline, UserOutline];
 
 @NgModule({
   providers: [
-    { provide: NZ_ICONS, useValue: icons }
+    {provide: NZ_ICONS, useValue: icons}
   ]
 })
 export class IconsProviderModule {

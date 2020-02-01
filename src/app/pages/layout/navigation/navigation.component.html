@@ -1,0 +1,17 @@
+<div class="logo">
+  <img src="../../../../assets/images/deadpool.svg" alt="logo">
+  <img src="../../../../assets/images/wolverine.svg" alt="logo">
+  <img src="../../../../assets/images/spiderman.svg" alt="logo">
+</div>
+<div class="logout">
+  <nz-avatar nzText="A"></nz-avatar>
+  <button nz-button nzSize="default" nzType="primary" nzGhost (click)="logout()">Logout</button>
+</div>
+<ul nz-menu nzTheme="light" nzMode="horizontal">
+  <li nz-menu-item nzMatchRouter>
+    <a routerLink="/home"><i nz-icon nzType="home"></i> Home</a>
+  </li>
+  <li nz-menu-item nzMatchRouter>
+    <a routerLink="/book"><i nz-icon nzType="book"></i> Books</a>
+  </li>
+</ul>

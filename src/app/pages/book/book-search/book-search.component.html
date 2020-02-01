@@ -1,0 +1,11 @@
+<nz-content>
+  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+    <input type="text" nz-input placeholder="Search title"/>
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+  </ng-template>
+  <div class="search-result-list">
+    <nz-empty></nz-empty>
+  </div>
+</nz-content>
