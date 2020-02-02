@@ -5,10 +5,7 @@ import {BookSearchComponent} from './book-search/book-search.component';
 const routes: Routes = [
   {
     path: '',
-    resolve: {},
-    children: [
-      {path: '', component: BookSearchComponent}
-    ]
+    component: BookSearchComponent
   }
 ];
 

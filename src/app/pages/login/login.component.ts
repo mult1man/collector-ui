@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SecurityContextService} from '../security/service/security-context.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {SecurityAuthenticationService} from '../security/service/security-authentication.service';
+import {NGXLogger} from 'ngx-logger';
 
 @Component({
   selector: 'login',
@@ -10,11 +12,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  validateForm: FormGroup;
+  form: FormGroup;
 
-  constructor(private router: Router,
+  constructor(private log: NGXLogger,
+              private router: Router,
               private route: ActivatedRoute,
               private securityContextService: SecurityContextService,
+              private securityAuthenticationService: SecurityAuthenticationService,
               private fb: FormBuilder) {
   }
 
@@ -23,13 +27,14 @@ export class LoginComponent implements OnInit {
       .subscribe(params => {
         if (this.securityContextService.isAuthenticated()) {
           this.autoLogin();
+        } else {
+          this.securityAuthenticationService.clearAuthentication();
         }
       });
 
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
+    this.form = this.fb.group({
+      username: ['louise', [Validators.required]],
+      password: ['louise', [Validators.required]]
     });
   }
 
@@ -37,11 +42,12 @@ export class LoginComponent implements OnInit {
     return this.router.navigate(['/home']);
   }
 
-  submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
+  login() {
+    this.securityAuthenticationService
+      .login(this.form.value)
+      .then(securityContext => {
+        this.log.debug('Login completed!');
+      });
   }
 
 }

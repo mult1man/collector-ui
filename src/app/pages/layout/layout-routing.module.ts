@@ -6,7 +6,6 @@ import {LayoutRoute} from './layout-routes';
 const routes: Routes = [
   {
     path: '',
-    resolve: {},
     component: LayoutComponent,
     children: [
       {
