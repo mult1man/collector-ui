@@ -10,14 +10,33 @@ export class BookSearchComponent implements OnInit {
 
   validateForm: FormGroup;
   controlArray: Array<{ index: number; show: boolean }> = [];
-  isCollapse = true;
 
-  toggleCollapse(): void {
-    this.isCollapse = !this.isCollapse;
-    this.controlArray.forEach((c, index) => {
-      c.show = this.isCollapse ? index < 6 : true;
-    });
-  }
+  sortName: string | null = null;
+  sortValue: string | null = null;
+  listOfData: Array<{ name: string; year: number; publisher: string; [key: string]: string | number }> = [
+    {
+      name: 'Suske & Wiske',
+      year: 1999,
+      publisher: 'Willy Vandersteen'
+    },
+    {
+      name: 'De Rode Ridder',
+      year: 1984,
+      publisher: 'Wily Vandersteen'
+    },
+    {
+      name: 'Jommeke',
+      year: 2001,
+      publisher: 'Uitgever Jommeke'
+    },
+    {
+      name: 'Urbanus',
+      year: 1989,
+      publisher: 'Hottentottententententoonstelling'
+    }
+  ];
+  // You need to change it as well!
+  listOfDisplayData: Array<{ name: string; year: number; publisher: string; [key: string]: string | number }> = [];
 
   resetForm(): void {
     this.validateForm.reset();
@@ -30,6 +49,34 @@ export class BookSearchComponent implements OnInit {
     for (let i = 0; i < 3; i++) {
       this.controlArray.push({ index: i, show: i < 6 });
       this.validateForm.addControl(`field${i}`, new FormControl());
+    }
+    this.search();
+  }
+
+  sort(sort: { key: string; value: string }): void {
+    this.sortName = sort.key;
+    this.sortValue = sort.value;
+    this.search();
+  }
+
+  search(): void {
+    /** filter data **/
+    const data = this.listOfData;
+    /** sort data **/
+    if (this.sortName && this.sortValue) {
+      this.listOfDisplayData = data.sort((a, b) =>
+        this.sortValue === 'ascend'
+          // tslint:disable-next-line:no-non-null-assertion
+          ? a[this.sortName!] > b[this.sortName!]
+          ? 1
+          : -1
+          // tslint:disable-next-line:no-non-null-assertion
+          : b[this.sortName!] > a[this.sortName!]
+          ? 1
+          : -1
+      );
+    } else {
+      this.listOfDisplayData = data;
     }
   }
 
