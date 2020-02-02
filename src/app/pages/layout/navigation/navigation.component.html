@@ -4,7 +4,7 @@
   <img src="../../../../assets/images/spiderman.svg" alt="logo">
 </div>
 <div class="logout">
-  <nz-avatar [nzText]="securityContext?.username.substring(0,1) | uppercase"></nz-avatar>
+  <nz-avatar [nzText]="userContext?.user?.firstName.substring(0,1) | uppercase"></nz-avatar>
   <button nz-button nzSize="default" nzType="primary" nzGhost (click)="logout()">Logout</button>
 </div>
 <ul nz-menu nzTheme="light" nzMode="horizontal">

@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     IconsProviderModule
   ],
   declarations: [
-
   ],
   exports: [
     CommonModule,

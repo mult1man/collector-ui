@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserContext} from '../user/model/user-context.model';
+import {UserContextHolder} from '../user/model/user-context.holder';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+   userContext: UserContext;
+
+  constructor(private userContextHolder: UserContextHolder) {
+  }
 
   ngOnInit() {
+    this.userContext = this.userContextHolder.get();
   }
 
 }

@@ -8,6 +8,10 @@ import {NGXLogger} from 'ngx-logger';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {UserService} from '../../user/service/user.service';
 import {ConfigurationService} from '../../shared/configuration/service/configuration.service';
+import {User} from '../../user/model/user.model';
+import {UserContext} from '../../user/model/user-context.model';
+import {UserContextFactory} from '../../user/factory/user-context.factory';
+import {UserContextHolder} from '../../user/model/user-context.holder';
 
 @Injectable({providedIn: 'root'})
 export class SecurityAuthenticationService {
@@ -21,7 +25,9 @@ export class SecurityAuthenticationService {
               private configurationService: ConfigurationService,
               private jwtHelperService: JwtHelperService,
               private securityContextService: SecurityContextService,
-              private userService: UserService) {
+              private userService: UserService,
+              private userContextFactory: UserContextFactory,
+              private userContextHolder: UserContextHolder) {
   }
 
   login(credentials: Credentials): Promise<boolean> {
@@ -72,11 +78,19 @@ export class SecurityAuthenticationService {
     ])
       .then(([user]) => {
         this.log.debug('Finalizing authentication...');
+        const userContext = this.initializeUserContext(user);
         return this.router.navigate(['/home']);
       })
       .catch(error => {
         throw error;
       });
+  }
+
+  private initializeUserContext(user: User): UserContext {
+    this.log.debug('Initializing user context with', user);
+    const userContext = this.userContextFactory.create(user);
+    this.userContextHolder.set(userContext);
+    return userContext;
   }
 
 }
