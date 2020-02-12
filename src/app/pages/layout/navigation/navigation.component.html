@@ -4,14 +4,43 @@
   <img src="../../../../assets/images/spiderman.svg" alt="logo">
 </div>
 <div class="logout">
-  <nz-avatar [nzText]="userContext?.user?.firstName.substring(0,1) | uppercase"></nz-avatar>
+  <nz-avatar [nz-popover] [nzText]="userContext?.user?.firstName.substring(0,1) | uppercase" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottomRight"></nz-avatar>
   <button nz-button nzSize="default" nzType="primary" nzGhost (click)="logout()">Logout</button>
 </div>
 <ul nz-menu nzTheme="light" nzMode="horizontal">
   <li nz-menu-item nzMatchRouter>
-    <a routerLink="/home"><i nz-icon nzType="home"></i> Home</a>
+    <a routerLink="/home">
+      <i nz-icon nzType="home"></i>
+      Home
+    </a>
   </li>
   <li nz-menu-item nzMatchRouter>
-    <a routerLink="/book"><i nz-icon nzType="book"></i> Books</a>
+    <a routerLink="/book">
+      <i nz-icon nzType="book"></i>
+      Books
+    </a>
   </li>
 </ul>
+
+<ng-template #contentTemplate>
+  <nz-card style="width:300px;" [nzActions]="[actionSetting, actionEdit]">
+    <nz-card-meta
+      [nzTitle]="userContext?.user?.firstName + ' ' + userContext?.user?.lastName"
+      [nzDescription]="descriptionTemplate"
+      [nzAvatar]="avatarTemplate"
+    ></nz-card-meta>
+  </nz-card>
+  <ng-template #descriptionTemplate>
+    <i nz-icon nzType="mail"></i> {{userContext?.user?.emailAddress}}<br>
+    <i nz-icon nzType="phone"></i> {{userContext?.user?.phoneNumber}}
+  </ng-template>
+  <ng-template #avatarTemplate>
+    <nz-avatar [nzText]="userContext?.user?.firstName.substring(0,1) | uppercase"></nz-avatar>
+  </ng-template>
+  <ng-template #actionSetting>
+    <i nz-icon nzType="setting"></i>
+  </ng-template>
+  <ng-template #actionEdit>
+    <i nz-icon nzType="edit"></i>
+  </ng-template>
+</ng-template>

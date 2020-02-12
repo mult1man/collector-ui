@@ -1,9 +1,17 @@
 import {NgModule} from '@angular/core';
 import {NZ_ICONS} from 'ng-zorro-antd';
 
-import {BookOutline, HomeOutline, LockOutline, UserOutline} from '@ant-design/icons-angular/icons';
+import {
+  BookOutline,
+  HomeOutline,
+  LockOutline,
+  MailOutline,
+  PhoneOutline,
+  SettingOutline,
+  UserOutline
+} from '@ant-design/icons-angular/icons';
 
-const icons = [HomeOutline, BookOutline, LockOutline, UserOutline];
+const icons = [HomeOutline, BookOutline, LockOutline, UserOutline, SettingOutline, PhoneOutline, MailOutline];
 
 @NgModule({
   providers: [
